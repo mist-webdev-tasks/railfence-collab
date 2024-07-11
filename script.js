@@ -1,6 +1,6 @@
 function encode() {
-    const text = document.getElementById('inputText').value;
-    const key = document.getElementById('key').value;
+    const text = document.getElementById('encoderInput').value;
+    const key = document.getElementById('encoderKey').value;
     const cipher = document.getElementById('cipherDropdown').value;
     let result = '';
 
@@ -10,13 +10,13 @@ function encode() {
         result = "Unsupported cipher";
     }
 
-    document.getElementById('result').textContent = result;
+    document.getElementById('encoderOutput').textContent = result;
 }
 
 
 function decode() {
-    const text = document.getElementById('inputText').value;
-    const key = document.getElementById('key').value;
+    const text = document.getElementById('decoderInput').value;
+    const key = document.getElementById('decoderKey').value;
     const cipher = document.getElementById('cipherDropdown').value;
     let result = '';
 
@@ -26,7 +26,7 @@ function decode() {
         result = "Unsupported cipher";
     }
 
-    document.getElementById('result').textContent = result;
+    document.getElementById('decoderOutput').textContent = result;
 }
 
 
@@ -110,4 +110,59 @@ function decryptRailFence(cipher, key) {
     }
 
     return result;
+}
+
+//function for Tutorial
+function tutorial() {
+    const cipher = document.getElementById('cipherDropdown').value;
+    const tutorialTitle = document.getElementById('tutorial-title');
+    const tutorialText = document.getElementById('tutorial-text');
+
+    if (cipher === "unselected") {
+        tutorialTitle.textContent = "Select a Cipher to see a Tutorial of it.";
+        tutorialText.textContent = "";
+    } else if (cipher === "railFence") {
+        tutorialTitle.textContent = "Rail Fence Cipher Tutorial";
+        tutorialText.textContent = "The Rail Fence Cipher is a type of transposition cipher, where characters are written diagonally in a zigzag pattern (resembling a rail fence) across several rails or lines. It rearranges the plaintext letters by shifting them around in a pattern resembling the shape of a fence.";
+    }
+}
+
+//funtion for decription
+function description() {
+    const cipher = document.getElementById('cipherDropdown').value;
+    const descriptionTitle = document.getElementById('description-title');
+    const descriptionText = document.getElementById('description-text');
+
+    if (cipher === "unselected") {
+        descriptionTitle.innerHTML = "<h2>Select a Cipher to see a Description of it.</h2>";
+        descriptionText.innerHTML = "";
+    } else if (cipher === "railFence") {
+        descriptionTitle.innerHTML = "<h2>Rail Fence Cipher Description</h2>";
+        descriptionText.innerHTML = `
+            <h2>Encryption Process:</h2>
+            <ul>
+                <li>Set up a matrix with rows equal to the key and columns equal to the length of the plaintext.</li>
+                <li>Fill the matrix by placing each character of the plaintext in a zigzag pattern across the rows.</li>
+                <li>Read the ciphertext row by row to generate the encrypted text.</li>
+            </ul>
+            <h2>Decryption Process:</h2>
+            <ul>
+                <li>Reconstruct the rail structure by setting up an empty matrix with rows equal to the key and columns equal to the length of the ciphertext.</li>
+                <li>Fill the matrix with the ciphertext in the zigzag pattern as it was during encryption.</li>
+                <li>Read the matrix in a zigzag manner to retrieve the original plaintext.</li>
+            </ul>
+        `;
+    }
+}
+
+//function t display Cipher Name
+function updateCipherName() {
+    const cipher = document.getElementById('cipherDropdown').value;
+    let name = document.getElementById('Cipher-Name');
+
+    if (cipher === "unselected") {
+        name.textContent = "Please select a Cipher";
+    } else if (cipher === "railFence") {
+        name.textContent = "Rail Fence Cipher";
+    }
 }

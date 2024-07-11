@@ -64,15 +64,12 @@
         <!-- Dropdown and Explanation -->
         <div class="row mb-4">
             <div class="col">
-                <select class="form-select" id="cipherDropdown">
+                <select class="form-select" id="cipherDropdown"  onchange="updateCipherName()">
+                    <option value="unselected">Select a Cipher</option>
                     <option value="railFence">Rail Fence Cipher</option>
                     <!-- Other ciphers can be added here later -->
                 </select>
-                <h2>Rail Fence Cipher</h2>
-                <p>
-                    The Rail Fence Cipher is a form of transposition cipher. 
-                    It gets its name from the way in which it is encoded: by writing characters in a zigzag pattern, which resembles a rail fence.
-                </p>
+                <h2 id="Cipher-Name">Please select a Cipher</h2>
             </div>
         </div>
 
@@ -90,11 +87,11 @@
                     type="button" role="tab" aria-controls="decode" aria-selected="false">Decode</button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="tutorial-tab" data-bs-toggle="tab" data-bs-target="#tutorial" 
+                    <button class="nav-link" id="tutorial-tab" onclick="tutorial();" data-bs-toggle="tab" data-bs-target="#tutorial" 
                     type="button" role="tab" aria-controls="tutorial" aria-selected="false">Tutorial</button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" 
+                    <button class="nav-link" id="description-tab" onclick="description();" data-bs-toggle="tab" data-bs-target="#description" 
                     type="button" role="tab" aria-controls="description" aria-selected="false">Description</button>
                   </li>
                 </ul>
@@ -107,17 +104,17 @@
                   <form id="encoderForm">
                     <div class="mb-3">
                       <label for="encoderInput" class="form-label">Plain Text</label>
-                      <textarea class="form-control" id="encoderInput" rows="5"></textarea>
+                      <textarea class="form-control" id="encoderInput" rows="2"></textarea>
                     </div>
                     <div class="mb-3">
                       <label for="encoderKey" class="form-label">Number of Rails</label>
                       <input type="number" class="form-control" id="encoderKey" min="2" value="3">
                     </div>
-                    <button type="submit" class="btn btn-primary">Encode</button>
+                    <button type="submit" class="btn btn-primary" onclick="event.preventDefault(); encode();">Encode</button>
                   </form>
                   <div class="mt-3">
                     <label for="encoderOutput" class="form-label">Encoded Text</label>
-                    <textarea class="form-control" id="encoderOutput" rows="5" readonly></textarea>
+                    <textarea class="form-control" id="encoderOutput" rows="2" readonly></textarea>
                   </div>
                 </div>
                 <!--decode-->
@@ -126,28 +123,28 @@
                   <form id="decoderForm">
                     <div class="mb-3">
                       <label for="decoderInput" class="form-label">Encoded Text</label>
-                      <textarea class="form-control" id="decoderInput" rows="5"></textarea>
+                      <textarea class="form-control" id="decoderInput" rows="2"></textarea>
                     </div>
                     <div class="mb-3">
                       <label for="decoderKey" class="form-label">Number of Rails</label>
                       <input type="number" class="form-control" id="decoderKey" min="2" value="3">
                     </div>
-                    <button type="submit" class="btn btn-primary">Decode</button>
+                    <button type="submit" class="btn btn-primary" onclick="event.preventDefault(); decode();">Decode</button>
                   </form>
                   <div class="mt-3">
                     <label for="decoderOutput" class="form-label">Decoded Text</label>
-                    <textarea class="form-control" id="decoderOutput" rows="5" readonly></textarea>
+                    <textarea class="form-control" id="decoderOutput" rows="2" readonly></textarea>
                   </div>
                 </div>
                 <!--tutorial-->
                 <div class="tab-pane fade" id="tutorial" role="tabpanel" aria-labelledby="tutorial-tab">
-                  <h5 class="card-title">Rail Fence Cipher Tutorial</h5>
-                  <p>This is the tutorial content for the Rail Fence Cipher.</p>
+                  <h2 class="card-title" id="tutorial-title"></h2>
+                  <p id="tutorial-text"></p>
                 </div>
                 <!--description-->
                 <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
-                  <h5 class="card-title">Rail Fence Cipher Description</h5>
-                  <p>Here you can describe the Rail Fence Cipher in detail.</p>
+                  <h5 class="card-title" id="description-title">Rail Fence Cipher Description</h5>
+                  <p id="description-text">Here you can describe the Rail Fence Cipher in detail.</p>
                 </div>
               </div>
             </div>
