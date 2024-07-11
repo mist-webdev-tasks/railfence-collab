@@ -76,10 +76,37 @@ h2 {
 #inputText, #key, #result{
     margin-bottom: 10px;
 }
+
+/*footer*/
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+    
+}
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+.footer-icons a {
+    color: #495057;
+    font-size: 24px;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
     .hero-section {
         height: 60vh;
         padding: 20px;
+    }
+}
+@media (max-width: 576px) {
+    .footer-icons {
+        flex-wrap: wrap;
+    }
+    .footer-icons a {
+        margin-bottom: 10px;
     }
 }
