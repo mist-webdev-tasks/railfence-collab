@@ -65,48 +65,48 @@ function encryptRailFence(text, key) {
     return result;
 }
 
-
 //decrypting function
 function decryptRailFence(cipher, key) {
+    if (key === 1) return cipher;  // Edge case for a single rail
+
     let n = cipher.length;
-    let matrix = [];
+    let matrix = Array.from({ length: key }, () => Array(n).fill(null));
 
-    for (let i = 0; i < key; i++) {
-        matrix[i] = [];
-        for (let j = 0; j < n; j++) {
-            matrix[i][j] = null;
-        }
-    }
-
-    let even = 0, num = 0;
-
-    for (let i = 0; i < key; i++) {
-        let j = i;
-        while (j < n) {
-            matrix[i][j] = cipher[num];
-            num++;
-            if (even === 0) {
-                even = 1;
-                j += 2 * (key - 1 - i);
-            } else {
-                even = 0;
-                j += 2 * i;
-            }
-        }
-        even = 0;
-    }
-
-    let result = '';
-    let row = 0, col = 0;
+    let idx = 0;
+    let row = 0;
+    let col = 0;
     let directionDown = false;
 
+    // Mark the positions in the matrix
     for (let i = 0; i < n; i++) {
-        result += matrix[row][col];
+        matrix[row][col++] = '*';
         if (row === 0 || row === key - 1) {
             directionDown = !directionDown;
         }
         row += directionDown ? 1 : -1;
-        col++;
+    }
+
+    // Fill the marked positions with cipher characters
+    for (let i = 0; i < key; i++) {
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j] === '*') {
+                matrix[i][j] = cipher[idx++];
+            }
+        }
+    }
+
+    // Read the matrix in a zigzag manner to decrypt the message
+    let result = '';
+    row = 0;
+    col = 0;
+    directionDown = false;
+
+    for (let i = 0; i < n; i++) {
+        result += matrix[row][col++];
+        if (row === 0 || row === key - 1) {
+            directionDown = !directionDown;
+        }
+        row += directionDown ? 1 : -1;
     }
 
     return result;
