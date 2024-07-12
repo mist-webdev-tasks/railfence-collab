@@ -64,7 +64,7 @@
         <!-- Dropdown and Explanation -->
         <div class="row mb-4">
             <div class="col">
-                <select class="form-select" id="cipherDropdown"  onchange="updateCipherName()">
+                <select class="form-select" id="cipherDropdown"  onchange="updateCipherName(); updateDecodeCard(); updateEncodeCard(); tutorial(); description();">
                     <option value="unselected">Select a Cipher</option>
                     <option value="railFence">Rail Fence Cipher</option>
                     <!-- Other ciphers can be added here later -->
@@ -79,11 +79,11 @@
               <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs" id="cipherTabs" role="tablist">
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="encode-tab" data-bs-toggle="tab" data-bs-target="#encode" 
+                    <button class="nav-link active" id="encode-tab" onclick="updateDecodeCard()" data-bs-toggle="tab" data-bs-target="#encode" 
                     type="button" role="tab" aria-controls="encode" aria-selected="true">Encode</button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="decode-tab" data-bs-toggle="tab" data-bs-target="#decode" 
+                    <button class="nav-link" id="decode-tab" onclick=" updateEncodeCard()" data-bs-toggle="tab" data-bs-target="#decode" 
                     type="button" role="tab" aria-controls="decode" aria-selected="false">Decode</button>
                   </li>
                   <li class="nav-item" role="presentation">
@@ -100,46 +100,15 @@
               <div class="card-body tab-content">
                 <!--encode-->
                 <div class="tab-pane fade show active" id="encode" role="tabpanel" aria-labelledby="encode-tab">
-                  <h5 class="card-title">Rail Fence Cipher Encoder</h5>
-                  <form id="encoderForm">
-                    <div class="mb-3">
-                      <label for="encoderInput" class="form-label">Plain Text</label>
-                      <textarea class="form-control" id="encoderInput" rows="2"></textarea>
-                    </div>
-                    <div class="mb-3">
-                      <label for="encoderKey" class="form-label">Number of Rails</label>
-                      <input type="number" class="form-control" id="encoderKey" min="2" value="3">
-                    </div>
-                    <button type="submit" class="btn btn-primary" onclick="event.preventDefault(); encode();">Encode</button>
-                  </form>
-                  <div class="mt-3">
-                    <label for="encoderOutput" class="form-label">Encoded Text</label>
-                    <textarea class="form-control" id="encoderOutput" rows="2" readonly></textarea>
-                  </div>
+                  <h2>Please select a Cipher to see it's Encoder</h2>
                 </div>
                 <!--decode-->
                 <div class="tab-pane fade" id="decode" role="tabpanel" aria-labelledby="decode-tab">
-                  <h5 class="card-title">Rail Fence Cipher Decoder</h5>
-                  <form id="decoderForm">
-                    <div class="mb-3">
-                      <label for="decoderInput" class="form-label">Encoded Text</label>
-                      <textarea class="form-control" id="decoderInput" rows="2"></textarea>
-                    </div>
-                    <div class="mb-3">
-                      <label for="decoderKey" class="form-label">Number of Rails</label>
-                      <input type="number" class="form-control" id="decoderKey" min="2" value="3">
-                    </div>
-                    <button type="submit" class="btn btn-primary" onclick="event.preventDefault(); decode();">Decode</button>
-                  </form>
-                  <div class="mt-3">
-                    <label for="decoderOutput" class="form-label">Decoded Text</label>
-                    <textarea class="form-control" id="decoderOutput" rows="2" readonly></textarea>
-                  </div>
+                  <h2>Please select a Cipher to see it's Decoder</h2>
                 </div>
                 <!--tutorial-->
                 <div class="tab-pane fade" id="tutorial" role="tabpanel" aria-labelledby="tutorial-tab">
-                  <h2 class="card-title" id="tutorial-title"></h2>
-                  <p id="tutorial-text"></p>
+                  <h2>Select a Cipher to see a Tutorial of it.</h2>
                 </div>
                 <!--description-->
                 <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
