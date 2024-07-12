@@ -79,7 +79,7 @@ function decryptRailFence(cipher, key) {
     }
 
     let even = 0, num = 0;
-    
+
     for (let i = 0; i < key; i++) {
         let j = i;
         while (j < n) {
@@ -101,7 +101,7 @@ function decryptRailFence(cipher, key) {
     let directionDown = false;
 
     for (let i = 0; i < n; i++) {
-        result+=matrix[row][col];
+        result += matrix[row][col];
         if (row === 0 || row === key - 1) {
             directionDown = !directionDown;
         }
@@ -115,43 +115,37 @@ function decryptRailFence(cipher, key) {
 //function for Tutorial
 function tutorial() {
     const cipher = document.getElementById('cipherDropdown').value;
-    const tutorialTitle = document.getElementById('tutorial-title');
-    const tutorialText = document.getElementById('tutorial-text');
+    const tutorialText = document.getElementById('tutorial');
 
     if (cipher === "unselected") {
-        tutorialTitle.textContent = "Select a Cipher to see a Tutorial of it.";
-        tutorialText.textContent = "";
+        tutorialText.innerHTML = "<h2>Select a Cipher to see a Tutorial of it.</h2>";
     } else if (cipher === "railFence") {
-        tutorialTitle.textContent = "Rail Fence Cipher Tutorial";
-        tutorialText.textContent = "The Rail Fence Cipher is a type of transposition cipher, where characters are written diagonally in a zigzag pattern (resembling a rail fence) across several rails or lines. It rearranges the plaintext letters by shifting them around in a pattern resembling the shape of a fence.";
+        tutorialText.innerHTML = `<h2>Rail Fence Cipher Tutorial</h2>
+                    <h2>Encryption Process:</h2>
+                    <ul>
+                        <li>Set up a matrix with rows equal to the key and columns equal to the length of the plaintext.</li>
+                        <li>Fill the matrix by placing each character of the plaintext in a zigzag pattern across the rows.</li>
+                        <li>Read the ciphertext row by row to generate the encrypted text.</li>
+                    </ul>
+                    <h2>Decryption Process:</h2>
+                    <ul>
+                        <li>Reconstruct the rail structure by setting up an empty matrix with rows equal to the key and columns equal to the length of the ciphertext.</li>
+                        <li>Fill the matrix with the ciphertext in the zigzag pattern as it was during encryption.</li>
+                        <li>Read the matrix in a zigzag manner to retrieve the original plaintext.</li>
+                    </ul>`;
     }
 }
 
 //funtion for decription
 function description() {
     const cipher = document.getElementById('cipherDropdown').value;
-    const descriptionTitle = document.getElementById('description-title');
-    const descriptionText = document.getElementById('description-text');
+    const descriptionText = document.getElementById('description');
 
     if (cipher === "unselected") {
-        descriptionTitle.innerHTML = "<h2>Select a Cipher to see a Description of it.</h2>";
-        descriptionText.innerHTML = "";
+        descriptionText.innerHTML = "<h2>Select a Cipher to see a Description of it.</h2>";
     } else if (cipher === "railFence") {
-        descriptionTitle.innerHTML = "<h2>Rail Fence Cipher Description</h2>";
-        descriptionText.innerHTML = `
-            <h2>Encryption Process:</h2>
-            <ul>
-                <li>Set up a matrix with rows equal to the key and columns equal to the length of the plaintext.</li>
-                <li>Fill the matrix by placing each character of the plaintext in a zigzag pattern across the rows.</li>
-                <li>Read the ciphertext row by row to generate the encrypted text.</li>
-            </ul>
-            <h2>Decryption Process:</h2>
-            <ul>
-                <li>Reconstruct the rail structure by setting up an empty matrix with rows equal to the key and columns equal to the length of the ciphertext.</li>
-                <li>Fill the matrix with the ciphertext in the zigzag pattern as it was during encryption.</li>
-                <li>Read the matrix in a zigzag manner to retrieve the original plaintext.</li>
-            </ul>
-        `;
+        descriptionText.innerHTML = `<h2>Rail Fence Cipher Description</h2>
+                    <p>The Rail Fence Cipher is a type of transposition cipher, where characters are written diagonally in a zigzag pattern (resembling a rail fence) across several rails or lines. It rearranges the plaintext letters by shifting them around in a pattern resembling the shape of a fence.</p>`;
     }
 }
 
@@ -164,5 +158,57 @@ function updateCipherName() {
         name.textContent = "Please select a Cipher";
     } else if (cipher === "railFence") {
         name.textContent = "Rail Fence Cipher";
+    }
+}
+
+//function for encoding card part
+function updateEncodeCard() {
+    const cipher = document.getElementById('cipherDropdown').value;
+    let card = document.getElementById('encode');
+    if (cipher === "unselected") {
+        card.innerHTML = "<h2>Please select a Cipher to see it's Encoder</h2>";
+    } else if (cipher === "railFence") {
+        card.innerHTML = `<h2 class="card-title">Rail Fence Cipher Encoder</h2>
+                  <form id="encoderForm">
+                    <div class="mb-3">
+                      <label for="encoderInput" class="form-label">Plain Text</label>
+                      <textarea class="form-control" id="encoderInput" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="encoderKey" class="form-label">Number of Rails</label>
+                      <input type="number" class="form-control" id="encoderKey" min="2" value="3">
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="event.preventDefault(); encode();">Encode</button>
+                  </form>
+                  <div class="mt-3">
+                    <label for="encoderOutput" class="form-label">Encoded Text</label>
+                    <textarea class="form-control" id="encoderOutput" rows="2" readonly></textarea>
+                  </div>`;
+    }
+}
+
+//function for decoding card part
+function updateDecodeCard() {
+    const cipher = document.getElementById('cipherDropdown').value;
+    let card = document.getElementById('decode');
+    if (cipher === "unselected") {
+        card.innerHTML = "<h2>Please select a Cipher to see it's Decoder</h2>";
+    } else if (cipher === "railFence") {
+        card.innerHTML = `<h2 class="card-title">Rail Fence Cipher Decoder</h2>
+                  <form id="decoderForm">
+                    <div class="mb-3">
+                      <label for="decoderInput" class="form-label">Encoded Text</label>
+                      <textarea class="form-control" id="decoderInput" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="decoderKey" class="form-label">Number of Rails</label>
+                      <input type="number" class="form-control" id="decoderKey" min="2" value="3">
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="event.preventDefault(); decode();">Decode</button>
+                  </form>
+                  <div class="mt-3">
+                    <label for="decoderOutput" class="form-label">Decoded Text</label>
+                    <textarea class="form-control" id="decoderOutput" rows="2" readonly></textarea>
+                  </div>`;
     }
 }
