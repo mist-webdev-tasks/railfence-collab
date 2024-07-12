@@ -4,52 +4,52 @@ body {
     font-family: 'Lato', Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-
-.container {
+  }
+  
+  .container {
     padding-top: 20px;
     padding-bottom: 20px;
-}
-
-h2 {
+  }
+  
+  h2 {
     font-family: 'Bona Nova SC', serif;
     color: #01ABC9;
-}
-h5{
+  }
+  h5{
     color: #01ABC9;
-}
-p, .fs-4{
+  }
+  p, .fs-4{
     color: #ecf0f1;
-}
-.btn {
+  }
+  .btn {
     cursor: pointer;
-}
-textarea{
+  }
+  textarea{
     background-color: #141c23;
-}
-/* Navbar */
-.navbar {
+  }
+  /* Navbar */
+  .navbar {
     margin-bottom: 20px;
     background-color: #049074;
-}
-
-.navbar-brand {
+  }
+  
+  .navbar-brand {
     font-family: 'Bona Nova SC', serif;
     font-weight: 700;
     font-size: xx-large;
     color: #ECF0F1;
-}
-
-.navbar-nav .nav-link {
+  }
+  
+  .navbar-nav .nav-link {
     color: #ECF0F1;
-}
-
-.navbar-nav .nav-link.active {
+  }
+  
+  .navbar-nav .nav-link.active {
     color: #BDC3C7;
-}
-
-/* Hero section */
-.hero-section {
+  }
+  
+  /* Hero section */
+  .hero-section {
     background-image: url('images/Designer.jpeg');
     background-size: cover;
     background-position: center;
@@ -61,120 +61,132 @@ textarea{
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-.hero-section::before {
+  }
+  
+  .hero-section::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(44, 62, 80, 0.7); /* Adjusted background color */
+    background-color: rgba(44, 62, 80, 0.7); 
     z-index: -1;
-}
-
-.text-center {
+  }
+  
+  .text-center {
     position: relative;
     z-index: 2;
-}
-
-.hero-section .container-fluid {
+  }
+  
+  .hero-section .container-fluid {
     position: relative;
     z-index: 2;
-}
-
-/* Main tabs */
-.nav-tabs .nav-link {
+  }
+  
+  /* Main tabs */
+  .nav-tabs .nav-link {
     color: #141c23;
-}
-
-.nav-tabs .nav-link.active {
+  }
+  
+  .nav-tabs .nav-link.active {
     background-color: #141c23;
     color: #ECF0F1;
-}
-
-/* Cards */
-.card {
-    background-color: #34495E; /* Adjusted background color */
+  }
+  
+  /* Cards */
+  .card {
+    background-color: #34495E; 
     color: #ECF0F1;
-}
-
-.card-header {
+  }
+  
+  .card-header {
     background-color: #1ABC9C;
     color: #141c23;
-}
-
-/* Dropdown */
-.form-select {
+  }
+  
+  /* Dropdown */
+  .form-select {
     background-color: #141c23;
     color: #ECF0F1;
     border: 1px solid #1ABC9C;
-}
-
-/* Feedback */
-.feedback-form {
+  }
+  
+  /* Feedback */
+  .feedback-form {
     position: fixed;
     bottom: 20px;
     right: 20px;
-}
-.feedback-form .btn {
+  }
+  .feedback-form .btn {
     background-color: #1ABC9C;
     color: #141c23;
-}
-.modal-content{
+  }
+  .modal-content{
     background-color: #141c23;
     color: #ECF0F1;
     border: 1px solid #1ABC9C;
-}
-#result {
+  }
+  #result {
     word-wrap: break-word;
-}
-
-#inputText,
-#key,
-#result {
+  }
+  
+  #inputText,
+  #key,
+  #result {
     margin-bottom: 10px;
-}
-
-/* Footer */
-.footer {
+  }
+  
+  /* Footer */
+  .footer {
     background-color: #141c23b1; 
     padding: 10px 0;
     text-align: center;
     color: #ecf0f17e;
-}
-
-.footer-icons {
+  }
+  
+  .footer-icons {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin-top: 10px;
-}
-
-.footer-icons a {
+  }
+  
+  .footer-icons a {
     color: #ecf0f17e;
     font-size: 24px;
-}
-
-.footer-icons a:hover {
+  }
+  
+  .footer-icons a:hover {
     color: #BDC3C7;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
+  }
+  
+  input[type="number"], textarea, .form-control{
+    background-color: #34495E;
+    color: #ECF0F1;
+    border: 1px solid #1ABC9C;
+    padding: 8px;
+  }
+  input[type="number"]:focus, textarea:focus, .form-control:focus{
+    outline: none;
+    border-color: #16A085;
+    background-color: #1abc9c;
+  }
+  /* Media Queries */
+  @media (max-width: 768px) {
     .hero-section {
         height: 60vh;
         padding: 20px;
     }
-}
-
-@media (max-width: 576px) {
+  }
+  
+  @media (max-width: 576px) {
     .footer-icons {
         flex-wrap: wrap;
     }
-
+  
     .footer-icons a {
         margin-bottom: 10px;
     }
-}
+  }
+  
