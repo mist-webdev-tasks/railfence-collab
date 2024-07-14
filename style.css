@@ -101,9 +101,14 @@ textarea {
   color: #ecf0f1;
 }
 
-.card-header {
+.card-header{
   background-color: #1abc9c;
   color: #141c23;
+}
+.card-header .navbar {
+  background-color: #1abc9c;
+  color: #141c23;
+  
 }
 
 /* Dropdown */
