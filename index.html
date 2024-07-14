@@ -63,7 +63,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="p-5 mb-4 bg-light rounded-3 hero-section">
+    <div class="p-5 mb-4 bg-light hero-section">
       <div class="container-fluid py-5 text-center text-light">
         <h1 class="display-5 fw-bold">MISTic Story</h1>
         <p class="col-md-8 fs-4 mx-auto">Learn and explore various ciphers</p>
@@ -96,6 +96,7 @@
           >
             <option value="unselected">Select a Cipher</option>
             <option value="railFence">Rail Fence Cipher</option>
+            <option value="monoalphabetic">Monoalphabetic Cipher</option>
             <!-- Other ciphers can be added here later -->
           </select>
           <h2 id="Cipher-Name">Please select a Cipher</h2>
@@ -106,38 +107,29 @@
       <div class="container mt-5">
         <div class="card">
           <div class="card-header">
-            <ul
-              class="nav nav-tabs card-header-tabs"
-              id="cipherTabs"
-              role="tablist"
-            >
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link active"
-                  id="encode-tab"
-                  onclick="updateDecodeCard()"
-                  data-bs-toggle="tab"
-                  data-bs-target="#encode"
-                  type="button"
-                  role="tab"
-                  aria-controls="encode"
-                  aria-selected="true"
-                >
-                  Encode
+            <nav class="navbar navbar-expand-lg">
+              <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTabs" aria-controls="navbarTabs" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
                 </button>
-              </li>
+                <div class="collapse navbar-collapse" id="navbarTabs">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav nav-tabs card-header-tabs" id="cipherTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="encode-tab" onclick="updateEncodeCard()" data-bs-toggle="tab" data-bs-target="#encode"  type="button" role="tab" aria-controls="encode" aria-selected="true">
+                        Encode
+                      </button>
+                    </li>
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
                   id="decode-tab"
-                  onclick=" updateEncodeCard()"
+                  onclick=" updateDecodeCard()"
                   data-bs-toggle="tab"
                   data-bs-target="#decode"
                   type="button"
                   role="tab"
                   aria-controls="decode"
-                  aria-selected="false"
-                >
+                  aria-selected="false">
                   Decode
                 </button>
               </li>
@@ -151,8 +143,7 @@
                   type="button"
                   role="tab"
                   aria-controls="tutorial"
-                  aria-selected="false"
-                >
+                  aria-selected="false">
                   Tutorial
                 </button>
               </li>
@@ -166,15 +157,15 @@
                   type="button"
                   role="tab"
                   aria-controls="description"
-                  aria-selected="false"
-                >
+                  aria-selected="false">
                   Description
                 </button>
               </li>
             </ul>
           </div>
-
-          <div class="card-body tab-content">
+        </div>
+      </nav>
+    </div><div class="card-body tab-content">
             <!--encode-->
             <div
               class="tab-pane fade show active"
@@ -200,7 +191,7 @@
               role="tabpanel"
               aria-labelledby="tutorial-tab"
             >
-              <h2>Select a Cipher to see a Tutorial of it.</h2>
+              <h2>Please select a Cipher to see a Tutorial of it.</h2>
             </div>
             <!--description-->
             <div
@@ -210,7 +201,7 @@
               aria-labelledby="description-tab"
             >
               <h5 class="card-title" id="description-title"></h5>
-              <p id="description-text"></p>
+              <p id="description-text">Please select a Cipher to see a Description of it.</p>
             </div>
           </div>
         </div>

@@ -1,126 +1,126 @@
 function encode() {
-  const text = document.getElementById("encoderInput").value;
-  const key = document.getElementById("encoderKey").value;
-  const cipher = document.getElementById("cipherDropdown").value;
-  let result = "";
+    const text = document.getElementById('encoderInput').value;
+    const key = document.getElementById('encoderKey').value;
+    const cipher = document.getElementById('cipherDropdown').value;
+    let result = '';
 
-  if (cipher === "railFence") {
-    result = encryptRailFence(text, key);
-  } else {
-    result = "Unsupported cipher";
-  }
+    if (cipher === "railFence") {
+        result = encryptRailFence(text, key);
+    } else {
+        result = "Unsupported cipher";
+    }
 
-  document.getElementById("encoderOutput").textContent = result;
+    document.getElementById('encoderOutput').textContent = result;
 }
+
 
 function decode() {
-  const text = document.getElementById("decoderInput").value;
-  const key = document.getElementById("decoderKey").value;
-  const cipher = document.getElementById("cipherDropdown").value;
-  let result = "";
+    const text = document.getElementById('decoderInput').value;
+    const key = document.getElementById('decoderKey').value;
+    const cipher = document.getElementById('cipherDropdown').value;
+    let result = '';
 
-  if (cipher === "railFence") {
-    result = decryptRailFence(text, key);
-  } else {
-    result = "Unsupported cipher";
-  }
+    if (cipher === "railFence") {
+        result = decryptRailFence(text, key);
+    } else {
+        result = "Unsupported cipher";
+    }
 
-  document.getElementById("decoderOutput").textContent = result;
+    document.getElementById('decoderOutput').textContent = result;
 }
+
 
 //encrypting function
 function encryptRailFence(text, key) {
-  let n = text.length;
-  let matrix = [];
+    let n = text.length;
+    let matrix = [];
 
-  for (let i = 0; i < key; i++) {
-    matrix[i] = [];
-    for (let j = 0; j < n; j++) {
-      matrix[i][j] = null;
+    for (let i = 0; i < key; i++) {
+        matrix[i] = [];
+        for (let j = 0; j < n; j++) {
+            matrix[i][j] = null;
+        }
     }
-  }
 
-  let row = 0,
-    col = 0;
-  let directionDown = false;
+    let row = 0, col = 0;
+    let directionDown = false;
 
-  for (let i = 0; i < n; i++) {
-    matrix[row][col] = text[i];
-    if (row === 0 || row === key - 1) {
-      directionDown = !directionDown;
+    for (let i = 0; i < n; i++) {
+        matrix[row][col] = text[i];
+        if (row === 0 || row === key - 1) {
+            directionDown = !directionDown;
+        }
+        row += directionDown ? 1 : -1;
+        col++;
     }
-    row += directionDown ? 1 : -1;
-    col++;
-  }
 
-  let result = "";
-  for (let r = 0; r < key; r++) {
-    for (let c = 0; c < n; c++) {
-      if (matrix[r][c] !== null) {
-        result += matrix[r][c];
-      }
+    let result = '';
+    for (let r = 0; r < key; r++) {
+        for (let c = 0; c < n; c++) {
+            if (matrix[r][c] !== null) {
+                result += matrix[r][c];
+            }
+        }
     }
-  }
-  return result;
+    return result;
 }
 
 //decrypting function
 function decryptRailFence(cipher, key) {
-  if (key === 1) return cipher; // Edge case for a single rail
+    if (key === 1) return cipher;  // Edge case for a single rail
 
-  let n = cipher.length;
-  let matrix = Array.from({ length: key }, () => Array(n).fill(null));
+    let n = cipher.length;
+    let matrix = Array.from({ length: key }, () => Array(n).fill(null));
 
-  let idx = 0;
-  let row = 0;
-  let col = 0;
-  let directionDown = false;
+    let idx = 0;
+    let row = 0;
+    let col = 0;
+    let directionDown = false;
 
-  // Mark the positions in the matrix
-  for (let i = 0; i < n; i++) {
-    matrix[row][col++] = "*";
-    if (row === 0 || row === key - 1) {
-      directionDown = !directionDown;
+    // Mark the positions in the matrix
+    for (let i = 0; i < n; i++) {
+        matrix[row][col++] = '*';
+        if (row === 0 || row === key - 1) {
+            directionDown = !directionDown;
+        }
+        row += directionDown ? 1 : -1;
     }
-    row += directionDown ? 1 : -1;
-  }
 
-  // Fill the marked positions with cipher characters
-  for (let i = 0; i < key; i++) {
-    for (let j = 0; j < n; j++) {
-      if (matrix[i][j] === "*") {
-        matrix[i][j] = cipher[idx++];
-      }
+    // Fill the marked positions with cipher characters
+    for (let i = 0; i < key; i++) {
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j] === '*') {
+                matrix[i][j] = cipher[idx++];
+            }
+        }
     }
-  }
 
-  // Read the matrix in a zigzag manner to decrypt the message
-  let result = "";
-  row = 0;
-  col = 0;
-  directionDown = false;
+    // Read the matrix in a zigzag manner to decrypt the message
+    let result = '';
+    row = 0;
+    col = 0;
+    directionDown = false;
 
-  for (let i = 0; i < n; i++) {
-    result += matrix[row][col++];
-    if (row === 0 || row === key - 1) {
-      directionDown = !directionDown;
+    for (let i = 0; i < n; i++) {
+        result += matrix[row][col++];
+        if (row === 0 || row === key - 1) {
+            directionDown = !directionDown;
+        }
+        row += directionDown ? 1 : -1;
     }
-    row += directionDown ? 1 : -1;
-  }
 
-  return result;
+    return result;
 }
 
 //function for Tutorial
 function tutorial() {
-  const cipher = document.getElementById("cipherDropdown").value;
-  const tutorialText = document.getElementById("tutorial");
+    const cipher = document.getElementById('cipherDropdown').value;
+    const tutorialText = document.getElementById('tutorial');
 
-  if (cipher === "unselected") {
-    tutorialText.innerHTML =
-      "<h2>Select a Cipher to see a Tutorial of it.</h2>";
-  } else if (cipher === "railFence") {
-    tutorialText.innerHTML = `<h2>Rail Fence Cipher Tutorial</h2>
+    if (cipher === "unselected") {
+        tutorialText.innerHTML = "<h2>Select a Cipher to see a Tutorial of it.</h2>";
+    } else if (cipher === "railFence") {
+        tutorialText.innerHTML = `<h2>Rail Fence Cipher Tutorial</h2>
                     <h2>Encryption Process:</h2>
                     <ul>
                         <li>Set up a matrix with rows equal to the key and columns equal to the length of the plaintext.</li>
@@ -133,43 +133,42 @@ function tutorial() {
                         <li>Fill the matrix with the ciphertext in the zigzag pattern as it was during encryption.</li>
                         <li>Read the matrix in a zigzag manner to retrieve the original plaintext.</li>
                     </ul>`;
-  }
+    }
 }
 
 //funtion for decription
 function description() {
-  const cipher = document.getElementById("cipherDropdown").value;
-  const descriptionText = document.getElementById("description");
+    const cipher = document.getElementById('cipherDropdown').value;
+    const descriptionText = document.getElementById('description');
 
-  if (cipher === "unselected") {
-    descriptionText.innerHTML =
-      "<h2>Select a Cipher to see a Description of it.</h2>";
-  } else if (cipher === "railFence") {
-    descriptionText.innerHTML = `<h2>Rail Fence Cipher Description</h2>
+    if (cipher === "unselected") {
+        descriptionText.innerHTML = "<h2>Select a Cipher to see a Description of it.</h2>";
+    } else if (cipher === "railFence") {
+        descriptionText.innerHTML = `<h2>Rail Fence Cipher Description</h2>
                     <p>The Rail Fence Cipher is a type of transposition cipher, where characters are written diagonally in a zigzag pattern (resembling a rail fence) across several rails or lines. It rearranges the plaintext letters by shifting them around in a pattern resembling the shape of a fence.</p>`;
-  }
+    }
 }
 
 //function t display Cipher Name
 function updateCipherName() {
-  const cipher = document.getElementById("cipherDropdown").value;
-  let name = document.getElementById("Cipher-Name");
+    const cipher = document.getElementById('cipherDropdown').value;
+    let name = document.getElementById('Cipher-Name');
 
-  if (cipher === "unselected") {
-    name.textContent = "Please select a Cipher";
-  } else if (cipher === "railFence") {
-    name.textContent = "Rail Fence Cipher";
-  }
+    if (cipher === "unselected") {
+        name.textContent = "Please select a Cipher";
+    } else if (cipher === "railFence") {
+        name.textContent = "Rail Fence Cipher";
+    }
 }
 
 //function for encoding card part
 function updateEncodeCard() {
-  const cipher = document.getElementById("cipherDropdown").value;
-  let card = document.getElementById("encode");
-  if (cipher === "unselected") {
-    card.innerHTML = "<h2>Please select a Cipher to see it's Encoder</h2>";
-  } else if (cipher === "railFence") {
-    card.innerHTML = `<h2 class="card-title">Rail Fence Cipher Encoder</h2>
+    const cipher = document.getElementById('cipherDropdown').value;
+    let card = document.getElementById('encode');
+    if (cipher === "unselected") {
+        card.innerHTML = "<h2>Please select a Cipher to see it's Encoder</h2>";
+    } else if (cipher === "railFence") {
+        card.innerHTML = `<h2 class="card-title">Rail Fence Cipher Encoder</h2>
                   <form id="encoderForm">
                     <div class="mb-3">
                       <label for="encoderInput" class="form-label">Plain Text</label>
@@ -185,17 +184,17 @@ function updateEncodeCard() {
                     <label for="encoderOutput" class="form-label">Encoded Text</label>
                     <textarea class="form-control" id="encoderOutput" rows="2" readonly></textarea>
                   </div>`;
-  }
+    }
 }
 
 //function for decoding card part
 function updateDecodeCard() {
-  const cipher = document.getElementById("cipherDropdown").value;
-  let card = document.getElementById("decode");
-  if (cipher === "unselected") {
-    card.innerHTML = "<h2>Please select a Cipher to see it's Decoder</h2>";
-  } else if (cipher === "railFence") {
-    card.innerHTML = `<h2 class="card-title">Rail Fence Cipher Decoder</h2>
+    const cipher = document.getElementById('cipherDropdown').value;
+    let card = document.getElementById('decode');
+    if (cipher === "unselected") {
+        card.innerHTML = "<h2>Please select a Cipher to see it's Decoder</h2>";
+    } else if (cipher === "railFence") {
+        card.innerHTML = `<h2 class="card-title">Rail Fence Cipher Decoder</h2>
                   <form id="decoderForm">
                     <div class="mb-3">
                       <label for="decoderInput" class="form-label">Encoded Text</label>
@@ -211,5 +210,5 @@ function updateDecodeCard() {
                     <label for="decoderOutput" class="form-label">Decoded Text</label>
                     <textarea class="form-control" id="decoderOutput" rows="2" readonly></textarea>
                   </div>`;
-  }
+    }
 }
