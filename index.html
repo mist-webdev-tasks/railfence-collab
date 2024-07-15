@@ -89,16 +89,12 @@
       <!-- Dropdown and Explanation -->
       <div class="row mb-4">
         <div class="col">
-          <select
-            class="form-select"
-            id="cipherDropdown"
-            onchange="updateCipherName(); updateDecodeCard(); updateEncodeCard(); tutorial(); description();"
-          >
-            <option value="unselected">Select a Cipher</option>
-            <option value="railFence">Rail Fence Cipher</option>
-            <option value="monoalphabetic">Monoalphabetic Cipher</option>
-            <!-- Other ciphers can be added here later -->
-          </select>
+            <select id="cipherDropdown" class="form-select" onchange="updateCipherName(); updateEncodeCard(); updateDecodeCard(); description(); tutorial();">
+                <option value="unselected">Select a Cipher</option>
+                <option value="railFence">Rail Fence Cipher</option>
+                <option value="monoalphabetic">Monoalphabetic Cipher</option>
+              </select>
+              
           <h2 id="Cipher-Name">Please select a Cipher</h2>
         </div>
       </div>
@@ -259,7 +255,7 @@
       <div class="container text-center">
         <span
           >Copyright &copy; 2024 MISTic Story. All rights reserved. | Designed
-          by <strong>Sapthami and Aditya</strong></span
+          by <strong>Sapthami and Aditya</strong></spagin
         >
         <div class="footer-icons d-flex justify-content-center gap-3 mt-3">
           <a href="#"><i class="bi bi-github"></i></a>
